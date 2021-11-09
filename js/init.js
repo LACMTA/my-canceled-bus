@@ -1,5 +1,3 @@
-import { DateTime } from "luxon";
-
 let listOfCanceledBusses = [];
 
 function addData(data){
