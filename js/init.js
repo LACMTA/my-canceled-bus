@@ -1,3 +1,5 @@
+import { DateTime } from "luxon";
+
 let listOfCanceledBusses = [];
 
 function addData(data){
@@ -18,7 +20,7 @@ function createCards(bus){
         // let thisBusNumber = bus.BusNumber
         // console.log(thisBusRoute)
         if(thisBusRoute){
-            let times = bus.Exporttime
+            let times = bus.TrpSrtTime
             // time = times.split(';')
             time = times
             // if the bus does not have a cancelled status, create a card
@@ -30,7 +32,7 @@ function createCards(bus){
                 card.innerHTML = `
                 <div class="card-body" id=${thisBusRoute}>
                     <h5 class="card-title">${bus.TrpRoute}</h5>
-                    <p class="card-text"id=${thisBusRoute}_text>${time}</p>
+                    <p class="card-text"id=${thisBusRoute}_text></p>
                 </div>
                 `
                 document.getElementById('canceled-busses-container').appendChild(card)
@@ -38,7 +40,13 @@ function createCards(bus){
             // potentially add additional information 
             else{
                 let extraContent = document.createElement('div')
-                extraContent.innerHTML = `<p class="card-text">${time}</p>`
+                extraContent.innerHTML = `<p class="card-text">${time} - ${bus.TrpEndTime}`
+                if (bus.TrpStrtPlace){
+                    extraContent.innerHTML += `${bus.TrpStrtPlace}`
+                }
+                if (bus.TrpEndPlace){
+                    extraContent.innerHTML += ` - ${bus.TrpEndPlace}`
+                }
                 // console.log(times)
                 document.getElementById(thisBusRoute+"_text").appendChild(extraContent)
                 // console.log('bus already exists')
