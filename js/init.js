@@ -1,3 +1,4 @@
+// canceled bus list
 let listOfCanceledBusses = [];
 
 function addData(data){
@@ -7,8 +8,8 @@ function addData(data){
     let employeeDataArray = data.Employees.Employee
     // console.log(employeeDataArray)
     employeeDataArray.forEach(createCards)
-
 }
+
 // this function is used to create the cards for each bus line
 function createCards(bus){
     if(bus.TrpRoute){
@@ -35,7 +36,8 @@ function createCards(bus){
                 `
                 document.getElementById('canceled-busses-container').appendChild(card)
             }
-            // potentially add additional information 
+
+            // this is for additional information per stop
             else{
                 let extraContent = document.createElement('div')
                 extraContent.innerHTML = `<p class="card-text">${time} - ${bus.TrpEndTime}`
@@ -71,6 +73,7 @@ function createCards(bus){
     // spaceForButtons.appendChild(newBusCard);
 }
 
+// adds a bus stop to the div
 function addBusToDiv(busline){
     const newBusListing = document.createElement("button");
     newBusListing.id = "button"+busline;
@@ -79,11 +82,15 @@ function addBusToDiv(busline){
     targetDiv.appendChild(newBusListing);
 }
 
-console.log('init.js loaded')
+// this is the main function that is called when the page is loaded
+function main(){
+    const url = './data/CancelledTripsRT.json'
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {addData(data)})
+    .then(() => listOfCanceledBusses.forEach(bus => addBusToDiv(bus)))
+    .catch(error => console.log(error))
+}
 
-const url = './data/CancelledTripsRT.json'
-fetch(url)
-.then(response => response.json())
-.then(data => {addData(data)})
-.then(() => listOfCanceledBusses.forEach(bus => addBusToDiv(bus)))
-.catch(error => console.log(error))
+// call the main function
+main()
