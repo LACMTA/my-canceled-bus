@@ -1,6 +1,18 @@
 // canceled bus list
 let listOfCanceledBusses = [];
 
+// this is the main function that is called when the page is loaded
+function main(){
+    const url = './data/CancelledTripsRT.json'
+    fetch(url)
+    .then(response => response.json()) // get the data from the json file
+    .then(data => {addData(data)}) // used to create the cards for each bus line
+    .then(() => listOfCanceledBusses.forEach(bus => addBusToDiv(bus))) // used to create the bus stop buttons on the right side
+    .catch(error => console.log(error))
+}
+
+main()
+
 function addData(data){
     // console.log(data)
     // var data = JSON.parse(data);
@@ -82,15 +94,3 @@ function addBusToDiv(busline){
     targetDiv.appendChild(newBusListing);
 }
 
-// this is the main function that is called when the page is loaded
-function main(){
-    const url = './data/CancelledTripsRT.json'
-    fetch(url)
-    .then(response => response.json())
-    .then(data => {addData(data)})
-    .then(() => listOfCanceledBusses.forEach(bus => addBusToDiv(bus)))
-    .catch(error => console.log(error))
-}
-
-// call the main function
-main()
