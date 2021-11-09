@@ -11,17 +11,14 @@ function main(){
     .catch(error => console.log(error))
 }
 
-main()
-
+// Step 1: data into the cards
 function addData(data){
-    // console.log(data)
-    // var data = JSON.parse(data);
-    // console.log(data)
-    let employeeDataArray = data.Employees.Employee
-    // console.log(employeeDataArray)
-    employeeDataArray.forEach(createCards)
+    let defaultData = data.Employees.Employee
+    // console.log(defaultData)
+    defaultData.forEach(createCards)
 }
 
+// Step 2: create the cards
 // this function is used to create the cards for each bus line
 function createCards(bus){
     if(bus.TrpRoute){
@@ -72,8 +69,19 @@ function createCards(bus){
             }
         }  
     }
+}
 
-// function to clean the time
+// step 3: create the bus stop list on the right side
+function addBusToDiv(busline){
+    const newBusListing = document.createElement("button");
+    newBusListing.id = "button"+busline;
+    newBusListing.innerHTML = busline;
+    const targetDiv = document.getElementById('canceledBusList')
+    targetDiv.appendChild(newBusListing);
+}
+
+
+// helper function to clean the time
 function formatTime(time){
     let hour = time.slice(0, 2)
     let minute = time.slice(2, 4)
@@ -85,30 +93,4 @@ function formatTime(time){
     return `${hour}:${minute} ${ampm}`
 }
 
-    // for ([busses] in listOfCanceledBusses){
-    //     console.log(busses)
-    // }
-    // else{
-        
-        // console.log('already added')
-
-        // console.log('this bus: '+thisBusRoute.toString()+' already exists')
-    // }
-
-    // console.log(listOfCanceledBusses)
-    // const newBusCard = document.createElement("button");
-    // newBusCard.id = "button"+bus;
-    // newBusCard.innerHTML = bus;
-    // const spaceForButtons = document.getElementById('canceledBussesContent')
-    // spaceForButtons.appendChild(newBusCard);
-}
-
-// adds a bus stop to the div
-function addBusToDiv(busline){
-    const newBusListing = document.createElement("button");
-    newBusListing.id = "button"+busline;
-    newBusListing.innerHTML = busline;
-    const targetDiv = document.getElementById('canceledBusList')
-    targetDiv.appendChild(newBusListing);
-}
-
+main()
