@@ -30,10 +30,17 @@ function createCards(bus){
         
         // let thisBusNumber = bus.BusNumber
         // console.log(thisBusRoute)
+        var cleanEndTime = formatTime(bus.TrpEndTime)
+        var cleanStartTime = formatTime(bus.TrpSrtTime)
         if(thisBusRoute){
             let times = bus.TrpSrtTime
             // time = times.split(';')
             time = times
+            console.log(time)
+            var cleantime = formatTime(time)
+            console.log(cleantime)
+            // console.log(""+time.slice(0, 2))
+            // console.log(":"+time.slice(2, 4))
             // if the bus does not have a cancelled status, create a card
             if (listOfCanceledBusses.indexOf(thisBusRoute) === -1){
                 console.log(bus)
@@ -52,7 +59,7 @@ function createCards(bus){
             // this is for additional information per stop
             else{
                 let extraContent = document.createElement('div')
-                extraContent.innerHTML = `<p class="card-text">${time} - ${bus.TrpEndTime}`
+                extraContent.innerHTML = `<p class="card-text">${cleanStartTime} - ${cleanEndTime}`
                 if (bus.TrpStrtPlace){
                     extraContent.innerHTML += `${bus.TrpStrtPlace}`
                 }
@@ -65,7 +72,18 @@ function createCards(bus){
             }
         }  
     }
-    
+
+// function to clean the time
+function formatTime(time){
+    let hour = time.slice(0, 2)
+    let minute = time.slice(2, 4)
+    let ampm = "AM"
+    if(hour > 12){
+        hour = hour - 12
+        ampm = "PM"
+    }
+    return `${hour}:${minute} ${ampm}`
+}
 
     // for ([busses] in listOfCanceledBusses){
     //     console.log(busses)
