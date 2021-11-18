@@ -1,35 +1,63 @@
 <html>
+
+<head>
     <meta charset="utf-8" />
-    <head>
-        <script src="js/init.js"></script>
-        <link rel="shortcut icon" href="#">
-        <link rel="stylesheet" href="styles/style.css">
-    </head>
-    <body>
-        <div id="header">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a class="navbar-brand" href="index.html">
-                </a>
-            </nav>
-            My Canceled Bus
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="styles/bootstrap.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">My Canceled Bus</a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Cancellation Alerts</h1>
+                <p>
+                    Metro recommends checking this page frequently as this page only provides potential trip changes, in
+                    which trips can be restored at a later time.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div id="canceled-buses-container">
+                    <div class="accordion pb-3" id="accordion-routes">
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div id="main">
-            <div id="alert">
-                <p>
-                    Metro recommends checking this page frequently as this page only provides potential trip changes, in which trips can be restored at a later time.
-                </p>
-                <div id="canceled-busses-container"></div>
-            </div>
-        </div>
-        <div id="sidebar">
+
+        <!-- <div id="main">
+                <div id="alert">
+                    <p>
+                        Metro recommends checking this page frequently as this page only provides potential trip changes, in which trips can be restored at a later time.
+                    </p>
+                    <div id="canceled-buses-container"></div>
+                </div>
+            </div> -->
+        <!-- <div id="sidebar">
             Search
-            <input autocomplete="off" type="text" size="10" class="gsc-input" name="search" title="search" style="width: 100%; padding: 0px; border: medium none; margin: 0px; height: auto; background: rgb(201, 200, 200) no-repeat scroll left center; outline: currentcolor none medium;" id="gsc-i-id1" dir="ltr" spellcheck="false">
+            <input autocomplete="off" type="text" size="10" class="gsc-input" name="search" title="search"
+                style="width: 100%; padding: 0px; border: medium none; margin: 0px; height: auto; background: rgb(201, 200, 200) no-repeat scroll left center; outline: currentcolor none medium;"
+                id="gsc-i-id1" dir="ltr" spellcheck="false">
             <h4>
-                List of Canceled Busses today (11/5/2021)
+                List of Canceled Buses today (11/5/2021)
             </h4>
             <div id="canceledBusList">
-                
+
             </div>
-        </div>
+        </div> -->
+    </div>
+    <script src="js/init.js"></script>
+    <script src="js/bootstrap.js"></script>
+</body>
+
 </html>
