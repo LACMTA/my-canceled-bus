@@ -8,7 +8,16 @@ function main() {
     .then(response => response.json()) // get the data from the json file
     .then(data => {addData(data);}) // used to create the cards for each bus line
     .then(() => listOfCanceledBuses.forEach(bus => addBusToDiv(bus))) // used to create the bus stop buttons on the right side
+    .then(()=>toggleAccordion())
     .catch(error => console.log(error));
+}
+
+function toggleAccordion() {
+    let accordions = document.getElementsByClassName("usa-accordion__button")
+    console.log(accordions)
+    Array.from(accordions).forEach((accordion) => {
+        accordion.click();
+    });
 }
 
 // Step 1: Load the JSON data, filter it, and group by lines
@@ -29,17 +38,17 @@ function createRoutePanels(routeData, routeName) {
     // let panelContent = 
 
     let panel = document.createElement('div');
-    panel.className = '';
+    panel.className = 'usa-accordion usa-accordion--bordered';
     panel.innerHTML = `
     <h2 class="usa-accordion__heading" id="accordion-heading-${routeName}">
-        <button class="usa-accordion__button" type="button" data-bs-toggle="collapse" data-bs-target="#panel-${routeName}" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+        <button class="usa-accordion__button" aria-controls="panel-${routeName}" >
             Line ${routeName}
         </button>
     </h2>
-    <div id="panel-${routeName}" class="usa-accordion__content usa-prose" aria-labelledby="usa-accordion__heading-${routeName}">
-        <div class="usa-accordion__content usa-prose">` + 
+    <div id="panel-${routeName}" class="usa-accordion__content usa-prose">
+        <p>` + 
         loopThroughCancels(routeData) + `
-        </div>
+        </p>
     </div>`;
     // let cleanEndTime = formatTime(routeData.TrpEndTime.trim());
     // let cleanStartTime = formatTime(routeData.TrpSrtTime.trim());

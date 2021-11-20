@@ -36,6 +36,46 @@
         </div>
         <button class="usa-menu-btn">Menu</button>
       </div>
+      <nav aria-label="Primary navigation" class="usa-nav">
+        <button class="usa-nav__close">
+          <img src="/assets/img/usa-icons/close.svg" role="img" alt="Close" />
+        </button>
+        <ul class="usa-nav__primary usa-accordion">
+          <li class="usa-nav__primary-item">
+            <button
+              class="usa-accordion__button usa-nav__link usa-current"
+              aria-expanded="false"
+              aria-controls="basic-nav-section-one"
+            >
+              <span>Rider Tools</span>
+            </button>
+  
+            <ul id="basic-nav-section-one" class="usa-nav__submenu">
+              <li class="usa-nav__submenu-item">
+                <a href="https://metro.com/my-bus/"> My Bus </a>
+              </li>
+              <li class="usa-nav__submenu-item">
+                <a href="#"> My Canceled Bus </a>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+  
+        <form class="usa-search usa-search--small" role="search">
+          <label class="usa-sr-only" for="basic-search-field-en-small">
+            Search
+          </label>
+          <input
+            class="usa-input"
+            id="basic-search-field-en-small"
+            type="search"
+            name="search"
+          />
+          <button class="usa-button" type="submit">
+            <span class="usa-sr-only">Search</span>
+          </button>
+        </form>
       </nav>
     </div>
   </header>
@@ -80,7 +120,8 @@
           <div class="row">
             <div class="col">
                 <div id="canceled-buses-container">
-                    <div class="usa-accordion" id="accordion-routes">
+                    <div class="usa-accordion usa-accordion--bordered">
+                        <div id="accordion-routes"></div>
                     </div>
                 </div>
             </div>
@@ -89,39 +130,6 @@
       </div>
     </div>
   </div>
-  <div class="usa-accordion">
-
-    <h4 class="usa-accordion__heading">
-        <button
-          class="usa-accordion__button"
-          aria-expanded="true"
-          aria-controls="a1"
-        >
-          First Amendment
-        </button>
-      </h4>
-      <div id="a1" class="usa-accordion__content usa-prose">
-        <p>
-          Congress shall make no law respecting an establishment of religion, or
-          prohibiting the free exercise thereof; or abridging the freedom of speech,
-          or of the press; or the right of the people peaceably to assemble, and to
-          petition the Government for a redress of grievances.
-        </p>
-      </div>
-
-  </div>
-
-          
-        <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <h1>Cancellation Alerts</h1>
-                        <p>
-                            Metro recommends checking this page frequently as this page only provides potential trip changes, in
-                            which trips can be restored at a later time.
-                        </p>
-                    </div>
-                </div>
     </main>
     
 
