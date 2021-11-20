@@ -29,15 +29,15 @@ function createRoutePanels(routeData, routeName) {
     // let panelContent = 
 
     let panel = document.createElement('div');
-    panel.className = 'accordion-item';
+    panel.className = '';
     panel.innerHTML = `
-    <h2 class="accordion-header" id="accordion-heading-${routeName}">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panel-${routeName}" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+    <h2 class="usa-accordion__heading" id="accordion-heading-${routeName}">
+        <button class="usa-accordion__button" type="button" data-bs-toggle="collapse" data-bs-target="#panel-${routeName}" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
             Line ${routeName}
         </button>
     </h2>
-    <div id="panel-${routeName}" class="accordion-collapse collapse" aria-labelledby="accordion-heading-${routeName}">
-        <div class="accordion-body">` + 
+    <div id="panel-${routeName}" class="usa-accordion__content usa-prose" aria-labelledby="usa-accordion__heading-${routeName}">
+        <div class="usa-accordion__content usa-prose">` + 
         loopThroughCancels(routeData) + `
         </div>
     </div>`;
