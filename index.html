@@ -2,41 +2,41 @@
 <html lang="en-US">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Metro - My Canceled Bus</title>
-    
-    <link rel="shortcut icon" href="#">
-    <!-- <link rel="stylesheet" href="styles/bootstrap.css"> -->
-    <link rel="stylesheet" href="https://lacmta.github.io/design-system/dist/css/uswds.min.css" type="text/css">
-    <link rel="stylesheet" href="styles/style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Metro - My Canceled Bus</title>
 
-    <script src="https://lacmta.github.io/design-system/dist/js/uswds-init.min.js"></script>
-    <script src="js/init.js"></script>
+  <link rel="shortcut icon" href="#">
+  <!-- <link rel="stylesheet" href="styles/bootstrap.css"> -->
+  <link rel="stylesheet" href="https://lacmta.github.io/design-system/dist/css/uswds.min.css" type="text/css">
+  <link rel="stylesheet" href="styles/style.css">
+
+  <script src="https://lacmta.github.io/design-system/dist/js/uswds-init.min.js"></script>
+  <script src="js/init.js"></script>
 </head>
 
 <body>
-    <a class="usa-skipnav" href="#main-content">Skip to main content</a>
- 
-    
+  <a class="usa-skipnav" href="#main-content">Skip to main content</a>
 
 
-  
-    <div class="usa-overlay"></div>
+
+
+
+  <div class="usa-overlay"></div>
   <header class="usa-header usa-header--basic">
     <div class="usa-nav-container">
       <div class="usa-navbar">
         <div class="usa-logo" id="basic-logo">
           <em class="usa-logo__text">
-            <a href="javascript:void(0)" title="&lt;Project title&gt;">
+            <a href="https://www.metro.net" title="Metro.net">
               Metro
             </a>
           </em>
         </div>
-        <button class="usa-menu-btn">Menu</button>
+        <!-- <button class="usa-menu-btn">Menu</button> -->
       </div>
-      <nav aria-label="Primary navigation" class="usa-nav">
+      <!-- <nav aria-label="Primary navigation" class="usa-nav">
         <button class="usa-nav__close">
           <img src="/assets/img/usa-icons/close.svg" role="img" alt="Close" />
         </button>
@@ -52,7 +52,7 @@
   
             <ul id="basic-nav-section-one" class="usa-nav__submenu">
               <li class="usa-nav__submenu-item">
-                <a href="https://metro.com/my-bus/"> My Bus </a>
+                <a href="#"> My Canceled Bus </a>
               </li>
               <li class="usa-nav__submenu-item">
                 <a href="#"> My Canceled Bus </a>
@@ -76,65 +76,62 @@
             <span class="usa-sr-only">Search</span>
           </button>
         </form>
-      </nav>
+      </nav> -->
     </div>
   </header>
-  
-    <div class="usa-section">
+
+  <div class="usa-section">
     <div class="grid-container">
       <div class="grid-row grid-gap">
-        <div class="usa-layout-docs__sidenav desktop:grid-col-3">
+        <!-- <div class="usa-layout-docs__sidenav desktop:grid-col-3">
           <nav aria-label="Secondary navigation">
             <ul class="usa-sidenav">
               <li class="usa-sidenav__item">
-                <a href="javascript:void(0);">Home</a>
+                <a href="https://mybus.metro.net" class="">MyBus</a>
               </li>
               <li class="usa-sidenav__item">
                 <a href="javascript:void(0);" class="usa-current">My Canceled Bus</a>
-
+              </li>
             </ul>
           </nav>
-        </div>
-  
-        <main
-          class="
+        </div> -->
+
+        <main class="
             usa-layout-docs__main
-            desktop:grid-col-9
+            desktop:grid-col-12
             usa-prose usa-layout-docs
-          "
-          id="main-content"
-        >
+          " id="main-content">
           <h1>Cancellation Alerts</h1>
-                <div class="usa-alert usa-alert--info usa-alert--slim">
-                    <div class="usa-alert__body">
-                    <p class="usa-alert__text">
-                        <b>Last updated: </b><time datetime="2021-11-19">2021-11-19</time> at 10:00am.
-                    </p>
-                    </div>
-                </div>
-            
+          <div class="usa-alert usa-alert--info usa-alert--slim">
+            <div class="usa-alert__body">
+              <p class="usa-alert__text">
+                <b>Last updated: </b><time datetime="2021-11-19">2021-11-19</time> at 10:00am.
+              </p>
+            </div>
+          </div>
 
           <p class="usa-intro">
-            Metro recommends checking this page frequently as this page only provides potential trip changes, in which trips can be restored at a later time.
+            Metro recommends checking this page frequently as this page only provides potential trip changes, in which
+            trips can be restored at a later time.
           </p>
           <div class="row">
             <div class="col">
-                <div id="canceled-buses-container">
-                    <div class="usa-accordion usa-accordion--bordered">
-                        <div id="accordion-routes"></div>
-                    </div>
+              <div id="canceled-buses-container">
+                <div class="usa-accordion usa-accordion--bordered">
+                  <div id="accordion-routes"></div>
                 </div>
+              </div>
             </div>
-        </div>
+          </div>
         </main>
       </div>
     </div>
   </div>
-    </main>
-    
+  </main>
 
 
-        <!-- <div id="main">
+
+  <!-- <div id="main">
                 <div id="alert">
                     <p>
                         Metro recommends checking this page frequently as this page only provides potential trip changes, in which trips can be restored at a later time.
@@ -142,7 +139,7 @@
                     <div id="canceled-buses-container"></div>
                 </div>
             </div> -->
-        <!-- <div id="sidebar">
+  <!-- <div id="sidebar">
             Search
             <input autocomplete="off" type="text" size="10" class="gsc-input" name="search" title="search"
                 style="width: 100%; padding: 0px; border: medium none; margin: 0px; height: auto; background: rgb(201, 200, 200) no-repeat scroll left center; outline: currentcolor none medium;"
@@ -154,9 +151,9 @@
 
             </div>
         </div> -->
-    </div>
-    <script src="https://lacmta.github.io/design-system/dist/js/uswds.min.js"></script>
-    <!-- <script src="js/bootstrap.js"></script> -->
+  </div>
+  <script src="https://lacmta.github.io/design-system/dist/js/uswds.min.js"></script>
+  <!-- <script src="js/bootstrap.js"></script> -->
 </body>
 
 </html>
