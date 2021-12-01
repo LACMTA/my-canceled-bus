@@ -1,7 +1,7 @@
-body {
+/* body {
     padding-top: 100px;
     padding-bottom: 50px;
-}
+} */
 
 /* body{
     display:grid;
@@ -58,3 +58,10 @@ body {
     border-color: #337ab7;
     background-color: #337ab7;
 } */
+
+.usa-hero {
+    background-color: #f2f2f2;
+    padding: 0px;
+    margin: 0px;
+    background-image: url("../imgs/hero.jpg");
+}
