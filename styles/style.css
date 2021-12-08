@@ -1,30 +1,35 @@
-body{
-    display:grid;
-    grid-template-columns: .8fr .2fr; /* this creates an even two column layout*/
-    grid-template-areas: "header header" "main sidebar" /* this creates one row with map panel on the left and sidepanel on the right */
+/* body {
+    padding-top: 100px;
+    padding-bottom: 50px;
+} */
 
-}
+/* body{
+    display:grid;
+    grid-template-columns: .8fr .2fr; // this creates an even two column layout
+    grid-template-areas: "header header" "main sidebar" // this creates one row with map panel on the left and sidepanel on the right
+
+} */
 
 /* style for the sections of the page */
-#header{
+/* #header{
     grid-area: header;
     background-color: #9e9e9e;
     color: white;
     border-bottom: 1px solid #d3d3d3;
     padding: 10px;
-}
+} */
 
-#main{
+/* #main{
     grid-area: main;
 } 
 
 #sidebar{
     grid-area: sidebar;
-} 
+}  */
 
 /* styles for the components of the page */
 
-.panel-primary>.panel-heading {
+/* .panel-primary>.panel-heading {
     color: #fff;
     background-color: #337ab7;
     border-color: #337ab7;
@@ -52,4 +57,11 @@ body{
     padding: 0px 10px;
     border-color: #337ab7;
     background-color: #337ab7;
+} */
+
+.usa-hero {
+    background-color: #f2f2f2;
+    padding: 0px;
+    margin: 0px;
+    background-image: url("../imgs/hero.jpg");
 }
