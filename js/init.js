@@ -36,7 +36,7 @@ function addData(data) {
 // Step 2: For each Route, create an accordion card 
 function createRoutePanels(routeData, routeName) {
     // let panelContent = 
-
+    let sortedRouteData = sortRouteData(routeData)
     let panel = document.createElement('div');
     panel.className = 'usa-accordion usa-accordion--bordered';
     panel.innerHTML = `
@@ -47,7 +47,8 @@ function createRoutePanels(routeData, routeName) {
     </h2>
     <div id="panel-${routeName}" class="usa-accordion__content usa-prose">
         <p>` + 
-        loopThroughCancels(routeData) + `
+        
+        loopThroughCancels(sortedRouteData) + `
         </p>
     </div>`;
     // let cleanEndTime = formatTime(routeData.TrpEndTime.trim());
@@ -55,14 +56,16 @@ function createRoutePanels(routeData, routeName) {
     let container = document.getElementById('accordion-routes');
     container.appendChild(panel);
 }
+function sortRouteData(routeData) {
+    return routeData.sort((a, b) => (a.TrpSrtTime > b.TrpSrtTime) ? 1 : -1);
+}
+
 
 function loopThroughCancels(routeData) {
     let results = "";
-
     for (let key in routeData) {
         results += createCanceledTrip(routeData[key]);
     }
-    
     return results;
 }
 
@@ -75,8 +78,8 @@ function createCanceledTrip(trip) {
     let segment = `${startPlace} to ${endPlace}`;
 
     return `
-    ${segment}<br>
-    ${time}<br><br>
+    <b>${time}</b> - 
+    ${segment}<br><br>
     `;
 }
 
@@ -86,6 +89,11 @@ function sortJson(json) {
         sorted[key] = json[key];
     });
     return sorted;
+}
+
+function sortTimes(times) {
+    var list_of_times = times;
+    
 }
 
 function groupBy(ar, key) {
@@ -102,61 +110,6 @@ function convertKeysToInt(obj) {
     }
     return newObj;
 }
-
-// Step 2: create the cards
-// this function is used to create the cards for each bus line
-function createCards(bus) {
-    if(bus.TrpRoute) {
-        let thisBusRoute = bus.TrpRoute;
-        thisBusRoute = thisBusRoute.replace(/\s/g, '');
-        
-        let cleanEndTime = formatTime(bus.TrpEndTime);
-        let cleanStartTime = formatTime(bus.TrpSrtTime);
-
-        if(thisBusRoute) {
-
-            // if the bus does not have a cancelled status, create a card
-            if (listOfCanceledBuses.indexOf(thisBusRoute) === -1) {
-                console.log(bus);
-                listOfCanceledBuses.push(thisBusRoute);
-                let card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                <div class="card-body" id=${thisBusRoute}>
-                    <h5 class="card-title">${bus.TrpRoute}</h5>
-                    <p class="card-text"id=${thisBusRoute}_text></p>
-                </div>
-                `;
-                document.getElementById('canceled-buses-container').appendChild(card);
-            }
-
-            // this is for additional information per stop
-            else{
-                let extraContent = document.createElement('div');
-                extraContent.innerHTML = `<p class="card-text">${cleanStartTime} - ${cleanEndTime}`;
-                if (bus.TrpStrtPlace) {
-                    extraContent.innerHTML += `${bus.TrpStrtPlace}`;
-                }
-                if (bus.TrpEndPlace) {
-                    extraContent.innerHTML += ` - ${bus.TrpEndPlace}`;
-                }
-                // console.log(times)
-                document.getElementById(thisBusRoute+"_text").appendChild(extraContent);
-                // console.log('bus already exists')
-            }
-        }  
-    }
-}
-
-// step 3: create the bus stop list on the right side
-function addBusToDiv(busline){
-    const newBusListing = document.createElement("button");
-    newBusListing.id = "button"+busline;
-    newBusListing.innerHTML = busline;
-    const targetDiv = document.getElementById('canceledBusList');
-    targetDiv.appendChild(newBusListing);
-}
-
 
 // helper function to clean the time
 function formatTime(time){
