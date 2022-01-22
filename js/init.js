@@ -3,13 +3,25 @@ let listOfCanceledBuses = [];
 
 // this is the main function that is called when the page is loaded
 function main() {
-    const url = './data/CancelledTripsRT.json';
-    fetch(url)
+    update_the_time()
+    const summary_url = 'https://metro-api-v2.ofhq3vd1r7une.us-west-2.cs.amazonlightsail.com/canceled_service/all/';
+    fetch(summary_url)
     .then(response => response.json()) // get the data from the json file
     .then(data => {addData(data);}) // used to create the cards for each bus line
     .then(() => listOfCanceledBuses.forEach(bus => addBusToDiv(bus))) // used to create the bus stop buttons on the right side
     .then(()=>toggleAccordion())
     .catch(error => console.log(error));
+}
+
+function update_the_time(){
+    let container = document.getElementById('last_updated_label');
+    const summary_url = 'https://metro-api-v2.ofhq3vd1r7une.us-west-2.cs.amazonlightsail.com/canceled_service_summary/';
+    fetch(summary_url).then(response => response.json()).then(data => {
+        let lastUpdatedDate = new Date(data.last_updated);
+        let updated_time = lastUpdatedDate.toLocaleTimeString('en-US',{hour: 'numeric', minute:'2-digit'});
+        let update_date = lastUpdatedDate.toLocaleDateString('en-US');
+        container.innerHTML =  `<time datetime="${update_date}">${update_date}</time> at ${updated_time}.`;
+    });
 }
 
 function toggleAccordion() {
@@ -22,10 +34,11 @@ function toggleAccordion() {
 
 // Step 1: Load the JSON data, filter it, and group by lines
 function addData(data) {
-    let defaultData = data.Employees.Employee;
-    let allRoutes = groupBy(defaultData, 'TrpType');
-    let regularRoutes = allRoutes.Regular;
-    let groupedRegularRoutes = groupBy(regularRoutes, 'TrpRoute');
+    let defaultData = data.canceled_data;
+    let allRoutes = groupBy(defaultData, 'trp_type');
+    let regularRoutes = allRoutes.REG;
+
+    let groupedRegularRoutes = groupBy(regularRoutes, 'trp_route');
     groupedRegularRoutes = convertKeysToInt(groupedRegularRoutes);
 
     for (let key in groupedRegularRoutes) {
@@ -45,7 +58,7 @@ function createRoutePanels(routeData, routeName) {
             Line ${routeName}
         </button>
     </h2>
-    <div id="panel-${routeName}" class="usa-accordion__content usa-prose">
+    <div id="panel-${routeName}" class="usa-accordion__content">
         <p>` + 
         
         loopThroughCancels(sortedRouteData) + `
@@ -56,8 +69,9 @@ function createRoutePanels(routeData, routeName) {
     let container = document.getElementById('accordion-routes');
     container.appendChild(panel);
 }
+
 function sortRouteData(routeData) {
-    return routeData.sort((a, b) => (a.TrpSrtTime > b.TrpSrtTime) ? 1 : -1);
+    return routeData.sort((a, b) => (a.trp_time_start > b.trp_time_start) ? 1 : -1);
 }
 
 
@@ -70,12 +84,14 @@ function loopThroughCancels(routeData) {
 }
 
 function createCanceledTrip(trip) {
-    let cleanEndTime = formatTime(trip.TrpEndTime);
-    let cleanStartTime = formatTime(trip.TrpSrtTime);
+    let cleanEndTime = formatTime(trip.trp_time_end);
+    let cleanStartTime = formatTime(trip.trp_time_start);
     let time = `${cleanStartTime} - ${cleanEndTime}`;
-    let startPlace = trip.TrpStrtPlace;
-    let endPlace = trip.TrpEndPlace;
-    let segment = `${startPlace} to ${endPlace}`;
+    let startPlace = trip.stop_description_first;
+    let endPlace = trip.stop_description_last;
+    let direction= trip.trp_direction;
+
+    let segment = `${startPlace} to ${endPlace} (${direction}BOUND)`;
 
     return `
     <b>${time}</b> - 
@@ -116,9 +132,17 @@ function formatTime(time){
     let hour = time.slice(0, 2);
     let minute = time.slice(2, 4);
     let ampm = "AM";
-    if(hour > 12){
-        hour = hour - 12;
-        ampm = "PM";
+    if (hour > 12) {
+        if (hour == 24) {
+            hour = 12;
+            ampm = "AM";
+        } else if (hour > 24) {
+            hour = hour - 24;
+            ampm = "AM";
+        } else {
+            hour = hour - 12;
+            ampm = "PM";
+        }
     }
     return `${hour}:${minute} ${ampm}`;
 }

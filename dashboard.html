@@ -12,6 +12,14 @@
   <link rel="stylesheet" href="styles/style.css">
 
   <script src="https://lacmta.github.io/design-system/dist/js/uswds-init.min.js"></script>
+  <style>
+    .chart-container {
+      position: relative;
+      margin: auto;
+      height: 70vh;
+      width: 50vw;
+    }
+  </style>
 </head>
 
 <body>
@@ -39,7 +47,7 @@
             desktop:grid-col-12
             usa-prose usa-layout-docs
           " id="main-content">
-          <h1>Cancelation Alerts</h1>
+          <h1>Cancelation Dashboard</h1>
           <div class="usa-alert usa-alert--info usa-alert--slim">
             <div class="usa-alert__body">
               <p class="usa-alert__text">
@@ -53,7 +61,9 @@
             Metro recommends checking this page frequently as this page only provides potential trip changes, in which
             trips can be restored at a later time.
           </p>
-          <!-- <canvas id="canceled_chart_summary" width="200" height="200"></canvas> -->
+          <div class="chart-container">
+            <canvas  id="canceled_chart_summary" width="200" height="200"></canvas>
+          </div>
           <div class="row">
             <div class="col">
               <div id="canceled-buses-container">
@@ -72,7 +82,7 @@
   </div>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://lacmta.github.io/design-system/dist/js/uswds.min.js"></script>
-  <script src="js/init.js"></script>
+  <script src="js/dashboard.js"></script>
 </body>
 
 </html>
