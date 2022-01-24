@@ -47,26 +47,18 @@ function add_chart(){
         },
         options: {
             indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false, // if `true` causes weird layout issues
             scaleShowValues: true,
             scales: {
                 y: {
-                    beginAtZero: true
-                },
-            yAxes: [{
-                ticks: {
-                    autoSkip: false,
-                    padding:1
-                }
-                }],
-            xAxes: [{
-                ticks: {
-                    autoSkip: false,
-                    padding:1
-                }
-                }]
+                    beginAtZero: true,
+                    display: true,
+                    autoSkipPadding: 0,
+                    autoSkip: false
+                }          
             }
-            
-        }
+    }
     });
 }
 function update_the_time(){
