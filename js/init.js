@@ -1,10 +1,10 @@
 // canceled bus list
 let listOfCanceledBuses = [];
-
+const API_URL = 'https://metro-api-v2.ofhq3vd1r7une.us-west-2.cs.amazonlightsail.com';
 // this is the main function that is called when the page is loaded
 function main() {
     update_the_time()
-    const summary_url = 'https://metro-api-v2.ofhq3vd1r7une.us-west-2.cs.amazonlightsail.com/canceled_service/all/';
+    const summary_url = API_URL+'/canceled_service/all';
     fetch(summary_url)
     .then(response => response.json()) // get the data from the json file
     .then(data => {addData(data);}) // used to create the cards for each bus line
@@ -12,11 +12,12 @@ function main() {
     .then(()=>toggleAccordion())
     .catch(error => console.log(error));
 }
-
+let theHeader = new Headers()
+theHeader.append('Access-Control-Allow-Origin', '*');
 function update_the_time(){
     let container = document.getElementById('last_updated_label');
-    const summary_url = 'https://metro-api-v2.ofhq3vd1r7une.us-west-2.cs.amazonlightsail.com/canceled_service_summary/';
-    fetch(summary_url).then(response => response.json()).then(data => {
+    const summary_url = API_URL+'/canceled_service_summary/';
+    fetch(summary_url,{method:"GET",headers:theHeader}).then(response => response.json()).then(data => {
         let lastUpdatedDate = new Date(data.last_updated);
         let updated_time = lastUpdatedDate.toLocaleTimeString('en-US',{hour: 'numeric', minute:'2-digit'});
         let update_date = lastUpdatedDate.toLocaleDateString('en-US');
