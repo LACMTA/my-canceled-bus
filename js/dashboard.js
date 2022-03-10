@@ -2,7 +2,7 @@ let routes =[]
 let cancelations =[]
 
 function main() {
-    const summary_url = 'https://metro-api-v2.ofhq3vd1r7une.us-west-2.cs.amazonlightsail.com/canceled_service_summary/';
+    const summary_url = 'https://api.metro.net/canceled_service_summary';
     fetch(summary_url)
     .then(response => response.json()) // get the data from the json file
     .then(json_data => format_data(json_data)) 

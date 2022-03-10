@@ -1,7 +1,7 @@
 // canceled bus list
 let listOfCanceledBuses = [];
-// const API_URL = 'https://api.metro.net';
-const API_URL = 'https://dev-metro-api-v2.ofhq3vd1r7une.us-west-2.cs.amazonlightsail.com';
+const API_URL = 'https://api.metro.net';
+// const API_URL = 'https://dev-metro-api-v2.ofhq3vd1r7une.us-west-2.cs.amazonlightsail.com';
 // this is the main function that is called when the page is loaded
 function main() {
     const summary_url = API_URL+'/canceled_service/all';
