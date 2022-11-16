@@ -38,7 +38,7 @@ function toggleAccordion() {
 
 // Step 1: Load the JSON data, filter it, and group by lines
 function addData(data) {
-    let defaultData = data.canceled_data;
+    let defaultData = data;
     let allRoutes = groupBy(defaultData, 'trp_type');
     let regularRoutes = allRoutes.REG;
 
